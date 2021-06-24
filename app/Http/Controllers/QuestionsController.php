@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Question;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
-class QuestionController extends Controller
+class QuestionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,10 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        // Get all question paginated.
+        $questions = Question::latest()->paginate(5);
+
+        return view('questions.index', compact('questions'));
     }
 
     /**
