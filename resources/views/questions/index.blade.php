@@ -12,6 +12,24 @@
                     <div class="card-body">
                         @forelse ($questions as $question)
                             <div class="media">
+
+                                <div class="d-flex flex-column counters">
+                                    {{-- Votes --}}
+                                    <div class="votes">
+                                        <strong>{{ $question->votes }}</strong> {{ str_plural('vote', $question->vote) }}
+                                    </div>
+
+                                    {{-- Status --}}
+                                    <div class="status {{ $question->status }}">
+                                        <strong>{{ $question->answers }}</strong> {{ str_plural('answer', $question->answers) }}
+                                    </div>
+
+                                    {{-- Views counter --}}
+                                    <div class="views">
+                                        {{ $question->views ." ". str_plural('view', $question->views) }}
+                                    </div>
+                                </div>
+
                                 <div class="media-body">
                                     {{-- Question title --}}
                                     <h4 class="mt-0">
