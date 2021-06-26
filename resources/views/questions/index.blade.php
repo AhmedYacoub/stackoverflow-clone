@@ -14,9 +14,21 @@
                             <div class="media">
                                 <div class="media-body">
                                     {{-- Question title --}}
-                                    <a href="{{ route('questions.show', [$question]) }}">
-                                        <h4 class="mt-0">{{ $question->title ?? '' }}</h4>
-                                    </a>
+                                    <h4 class="mt-0">
+                                        <a href="{{ $question->url }}">
+                                            {{ $question->title ?? '' }}
+                                        </a>
+                                    </h4>
+
+                                    {{-- Author link --}}
+                                    <p class="lead">
+                                        Asked by
+                                        <a href="{{ $question->user->url }}">
+                                            {{ $question->user->name }}
+                                        </a>
+
+                                        <small class="text-muted">{{ $question->created_date }}</small>
+                                    </p>
 
                                     {{-- Question body, limited to 100 characters --}}
                                     <p>
@@ -30,7 +42,7 @@
                             <p>Sorry, no questions yet!</p>
                         @endforelse
 
-                        <div >
+                        <div>
                             {{-- Pagination links --}}
                             {{ $questions->links() }}
                         </div>

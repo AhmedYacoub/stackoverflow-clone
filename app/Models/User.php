@@ -37,6 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /* Accessors and Mutator */
+    public function getUrlAttribute()
+    {
+        return route('users.show', $this);
+    }
+
     /* Relationships */
     public function questions()
     {
