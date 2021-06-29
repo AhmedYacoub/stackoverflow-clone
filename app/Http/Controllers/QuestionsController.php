@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Http\Requests\Questions\StorePostRequest;
 
 class QuestionsController extends Controller
 {
@@ -36,9 +37,17 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+        // Validate incoming request.
+        $request->validated();
+
+        // Store Question
+        $new_question = auth()->user()->questions()
+            ->create($request->only('title', 'body'));
+
+        return redirect()->route('questions.index')
+            ->with('success', 'Your question has been submitted.');
     }
 
     /**

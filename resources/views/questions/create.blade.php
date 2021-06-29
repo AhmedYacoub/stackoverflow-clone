@@ -18,6 +18,8 @@
                     </div>
 
                     <div class="card-body">
+                        {{-- Include session messages --}}
+                        @include('layouts._messages')
 
                         {{-- Form --}}
                         <form action="{{ route('questions.store') }}" method="post">
@@ -26,12 +28,14 @@
                             {{-- Question title input --}}
                             <div class="form-group">
                                 <label for="question-title">Question Title</label>
-                                <input type="text" name="question_title" id="question-title" class="form-control {{ $errors->has('question_title') ? 'is-invalid' : '' }}" placeholder="how may I.." required />
+                                <input type="text" name="title" id="question-title"
+                                    class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
+                                    placeholder="how may I.." value="{{ old('title') }}" />
 
                                 {{-- Show errors related to this input --}}
-                                @if ($errors->has('question_title'))
+                                @if ($errors->has('title'))
                                     <div class="invalid-feedback">
-                                        <strong>{{ $errors->first('question_title') }}</strong>
+                                        <strong>{{ $errors->first('title') }}</strong>
                                     </div>
                                 @endif
                                 {{-- End --}}
@@ -41,11 +45,13 @@
                             {{-- Question body --}}
                             <div class="form-group">
                                 <label for="question-body">Explain your question</label>
-                                <textarea name="question_body" id="question-body" cols="30" rows="10" class="form-control {{ $errors->has('question_body') ? 'is-invalid' : '' }}"></textarea>
+                                <textarea name="body" id="question-body" cols="30" rows="10"
+                                    class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}"
+                                    style="resize: none;">{{ old('body') }}</textarea>
 
-                                @if ($errors->has('question_body'))
+                                @if ($errors->has('body'))
                                     <div class="invalid-feedback">
-                                        <strong>{{ $errors->first('question_body') }}</strong>
+                                        <strong>{{ $errors->first('body') }}</strong>
                                     </div>
                                 @endif
                             </div>

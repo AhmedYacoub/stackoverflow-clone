@@ -18,6 +18,9 @@
                     </div>
 
                     <div class="card-body">
+                        {{-- Include session messages --}}
+                        @include('layouts._messages')
+
                         @forelse ($questions as $question)
                             <div class="media">
 
