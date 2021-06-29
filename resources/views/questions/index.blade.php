@@ -6,7 +6,15 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
-                        All Questions
+                        <div class="d-flex align-items-center">
+                            <h3>All Questions</h3>
+
+                            <div class="ml-auto">
+                                <a href="{{ route('questions.create') }}" class="btn btn-outline-secondary">
+                                    Ask a question
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">
