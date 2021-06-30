@@ -53,10 +53,23 @@
                                         </h4>
 
                                         <div class="ml-auto">
-                                            <a href="{{ route('questions.edit', $question->id) }}"
-                                                class="btn btn-outline-info btn-sm" title="edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
+                                            <div class="d-flex">
+                                                <a href="{{ route('questions.edit', $question->id) }}"
+                                                    class="btn btn-outline-info btn-sm mx-1" title="edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+
+                                                <form action="{{ route('questions.destroy', $question->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm mx-1"
+                                                        title="delete" onclick="return confirm('are you sure?')">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
 
