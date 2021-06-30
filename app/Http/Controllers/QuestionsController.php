@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\Questions\StorePostRequest;
+use App\Http\Requests\Questions\UpdatePostRequest;
 
 class QuestionsController extends Controller
 {
@@ -69,7 +70,7 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('questions.edit', compact('question'));
     }
 
     /**
@@ -79,9 +80,16 @@ class QuestionsController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(UpdatePostRequest $request, Question $question)
     {
-        //
+        // Validate incoming request.
+        $request->validated();
+
+        // Update question object with new data.
+        $question->update($request->only('title', 'body'));
+
+        return redirect()->route('questions.index')
+            ->with('success', 'Question has been updated!');
     }
 
     /**

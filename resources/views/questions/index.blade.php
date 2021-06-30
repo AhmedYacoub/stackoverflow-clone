@@ -27,27 +27,38 @@
                                 <div class="d-flex flex-column counters">
                                     {{-- Votes --}}
                                     <div class="votes">
-                                        <strong>{{ $question->votes }}</strong> {{ str_plural('vote', $question->vote) }}
+                                        <strong>{{ $question->votes }}</strong>
+                                        {{ str_plural('vote', $question->vote) }}
                                     </div>
 
                                     {{-- Status --}}
                                     <div class="status {{ $question->status }}">
-                                        <strong>{{ $question->answers }}</strong> {{ str_plural('answer', $question->answers) }}
+                                        <strong>{{ $question->answers }}</strong>
+                                        {{ str_plural('answer', $question->answers) }}
                                     </div>
 
                                     {{-- Views counter --}}
                                     <div class="views">
-                                        {{ $question->views ." ". str_plural('view', $question->views) }}
+                                        {{ $question->views . ' ' . str_plural('view', $question->views) }}
                                     </div>
                                 </div>
 
                                 <div class="media-body">
-                                    {{-- Question title --}}
-                                    <h4 class="mt-0">
-                                        <a href="{{ $question->url }}">
-                                            {{ $question->title ?? '' }}
-                                        </a>
-                                    </h4>
+                                    <div class="d-flex align-items-center">
+                                        {{-- Question title --}}
+                                        <h4 class="mt-0">
+                                            <a href="{{ $question->url }}">
+                                                {{ $question->title ?? '' }}
+                                            </a>
+                                        </h4>
+
+                                        <div class="ml-auto">
+                                            <a href="{{ route('questions.edit', $question->id) }}"
+                                                class="btn btn-outline-info btn-sm" title="edit">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        </div>
+                                    </div>
 
                                     {{-- Author link --}}
                                     <p class="lead">
