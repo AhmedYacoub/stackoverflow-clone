@@ -100,8 +100,10 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+        // Hard-delete the required question.
         $question->delete();
 
-        return redirect()->route('questions.index')->with('success', 'Question has been deleted.');
+        return redirect()->route('questions.index')
+            ->with('success', 'Question has been deleted.');
     }
 }
