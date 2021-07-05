@@ -9,7 +9,7 @@ class Question extends Model
 {
     protected $fillable = [
         'user_id', 'best_answer_id', 'title', 'body',
-        'views', 'answers', 'votes'
+        'views', 'answers_count', 'votes'
     ];
 
     /* Accessor & Mutator */
@@ -33,7 +33,7 @@ class Question extends Model
     {
         $status = 'unanswered';
 
-        if ($this->answers > 0) {
+        if ($this->answers_count > 0) {
             if ($this->best_answer_id)
                 $status = 'answer-accepted';
 
@@ -52,6 +52,11 @@ class Question extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class, 'question_id', 'id');
     }
 
     /* Custom Methods */
