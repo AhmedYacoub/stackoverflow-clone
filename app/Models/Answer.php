@@ -10,6 +10,15 @@ class Answer extends Model
         'user_id', 'question_id', 'body', 'votes_count',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($answer) {
+            $answer->question->increment('answers_count');
+        });
+    }
+
     /** Accessors and Mutators */
     public function getHtmlBodyAttribute()
     {
