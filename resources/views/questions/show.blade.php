@@ -25,6 +25,8 @@
 
                     </div>
                 </div>
+
+                @include('partials.__answers')
             </div>
         </div>
     </div>

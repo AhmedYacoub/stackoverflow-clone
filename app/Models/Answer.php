@@ -20,7 +20,7 @@ class Answer extends Model
     }
 
     /** Accessors and Mutators */
-    public function getHtmlBodyAttribute()
+    public function getBodyHtmlAttribute()
     {
         return \Parsedown::instance()->text($this->body);
     }
@@ -37,6 +37,4 @@ class Answer extends Model
     }
 
     /** Custom Methods */
-
-
 }

@@ -32,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::bind('questionSlug', function ($questionSlug) {
-            return Question::whereSlug($questionSlug)->firstOrFail();
+            return Question::with('answers', 'answers.user')->whereSlug($questionSlug)->firstOrFail();
         });
 
         parent::boot();
