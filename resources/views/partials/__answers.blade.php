@@ -11,6 +11,22 @@
 
                 @forelse ($question->answers as $answer)
                     <div class="media">
+                        <div class="d-flex flex-column vote-controls">
+                            <a href="#" title="This question is useful!" class="vote-up">
+                                <i class="fa fa-caret-up fa-2x"></i>
+                            </a>
+
+                            <span class="votes-count">12</span>
+
+                            <a href="#" title="This question is not useful!" class="vote-down off">
+                                <i class="fa fa-caret-down fa-2x"></i>
+                            </a>
+
+                            <a href="#" title="Mark this answer as best answer" class="vote-accepted mt-2">
+                                <i class="fa fa-check fa-2x"></i>
+                            </a>
+                        </div>
+
                         <div class="media-body">
                             {!! $answer->body_html !!}
 
@@ -27,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
+                    {!! $loop->last ? "" : "<hr>"!!}
                 @empty
                     <i>sorry, no answers yet!</i>
                 @endforelse

@@ -37,3 +37,43 @@
         margin-top: 10px;
     }
 }
+
+form.form-delete {
+    display: inline;
+}
+
+.vote-controls {
+    min-width: 60px;
+    margin-right: 30px;
+    text-align: center;
+    color: lightgray;
+    span,
+    a {
+        display: block;
+    }
+    span {
+        &.votes-count {
+            font-size: 16px;
+        }
+        &.favorites-count {
+            font-size: 12px;
+        }
+    }
+    a {
+        cursor: pointer;
+        color: lightslategray;
+        &.off,
+        &.off:hover {
+            color: lightgray;
+        }
+        &.favorite {
+            &.favored,
+            &.favored:hover {
+                color: $red;
+            }
+        }
+        &.vote-accepted {
+            color: $green;
+        }
+    }
+}
