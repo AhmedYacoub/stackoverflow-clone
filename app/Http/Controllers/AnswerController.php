@@ -39,9 +39,11 @@ class AnswerController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Answer $answer)
+    public function edit(Question $question, Answer $answer)
     {
-        //
+        $this->authorize('update', $answer);
+
+        return view('answers.edit', compact('question', 'answer'));
     }
 
     /**
@@ -51,9 +53,19 @@ class AnswerController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Answer $answer)
+    public function update(Question $question, Answer $answer, Request $request)
     {
-        //
+        $request->validate([
+            'body'  =>  'required|string|min:1|max:1000',
+        ], [
+            'body.required' =>  'Answer is required.',
+            'body.min'      =>  'Answer characters must be between 1 & 1000',
+            'body.max'      =>  'Answer characters must be between 1 & 1000',
+        ]);
+
+        $answer->update(['body' => $request->body]);
+
+        return redirect(route('questions.show', $question->slug) . "/#answer-" . $answer->id)->with('success', 'Answer has been updated.');
     }
 
     /**
@@ -62,8 +74,12 @@ class AnswerController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Answer $answer)
+    public function destroy(Question $question, Answer $answer)
     {
-        //
+        $this->authorize('destroy', $answer);
+
+        $answer->delete();
+
+        return back()->with('success', 'Answer has been deleted.');
     }
 }

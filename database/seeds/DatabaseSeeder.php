@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Question;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +12,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Create 10 question records, creating a user each record.
-        factory(Question::class, 10)->create();
+        factory(App\Models\Question::class, 10)->create()->each(function ($question) {
+            $question->answers()->saveMany(factory(App\Models\Answer::class, rand(1, 5))->make());
+        });
+
+        // Call seeder classes.
+        $this->call(
+            AdminUserSeeder::class,
+
+        );
     }
 }

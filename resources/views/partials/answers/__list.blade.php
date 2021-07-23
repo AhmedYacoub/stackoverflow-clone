@@ -6,7 +6,7 @@
         <div class="card">
             {{-- answers count --}}
             <div class="card-header h4">
-                {{ $question->answers_count ." ". str_plural('Answer', $question->answers_count) }}
+                {{ $question->answers_count . ' ' . str_plural('Answer', $question->answers_count) }}
             </div>
 
             {{-- all answers --}}
@@ -31,8 +31,33 @@
                             </a>
                         </div>
 
-                        <div class="media-body">
+                        <div class="media-body" id="answer-{{ $answer->id }}">
                             {!! $answer->body_html !!}
+
+                            <div class="row">
+                                <div class="d-flex">
+                                    @can('update', $answer)
+                                        <a href="{{ route('questions.answers.edit', [$question->id, $answer->id]) }}"
+                                            class="btn btn-outline-info btn-sm mx-1" title="edit">
+                                            Edit
+                                        </a>
+                                    @endcan
+
+                                    @can('delete', $answer)
+                                        <form
+                                            action="{{ route('questions.answers.destroy', [$question->id, $answer->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('delete')
+
+                                            <button type="submit" class="btn btn-outline-danger btn-sm mx-1" title="delete"
+                                                onclick="return confirm('are you sure?')">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    @endcan
+                                </div>
+                            </div>
 
                             <div class="float-right">
                                 <span class="text-muted">
@@ -47,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    {!! $loop->last ? "" : "<hr>"!!}
+                    {!! $loop->last ? '' : '<hr>' !!}
                 @empty
                     <i>sorry, no answers yet!</i>
                 @endforelse
