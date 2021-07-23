@@ -1,5 +1,8 @@
-<div class="row mt-2">
-    <div class="col-md-12">
+<div class="row justify-content-center mt-2">
+    <div class="col-md-10">
+
+        @include('partials.__messages')
+
         <div class="card">
             {{-- answers count --}}
             <div class="card-header h4">
@@ -8,6 +11,7 @@
 
             {{-- all answers --}}
             <div class="card-body">
+
 
                 @forelse ($question->answers as $answer)
                     <div class="media">

@@ -35,7 +35,7 @@
                                 </a>
 
                                 <a href="#" title="mark as favorite" class="favorite">
-                                    <i class="fa fa-heart"></i>
+                                    <i class="fa fa-star fa-2x"></i>
 
                                     <span class="favorites-count">192</span>
                                 </a>
@@ -51,8 +51,15 @@
                     </div>
                 </div>
 
-                @include('partials.__answers')
             </div>
         </div>
+
+        @include('partials.answers.__list', [
+        'answers' => $question->answers,
+        'answersCount' => $question->answers_count
+        ])
+
+        @include('partials.answers.__create')
+
     </div>
 @endsection

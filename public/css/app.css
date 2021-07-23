@@ -14051,15 +14051,19 @@ form.form-delete {
 
 .vote-controls a.off,
 .vote-controls a.off:hover {
-  color: lightgray;
+  color: #C0C0C0;
 }
 
 .vote-controls a.favorite.favored,
 .vote-controls a.favorite.favored:hover {
-  color: #e3342f;
+  color: #FFD700;
 }
 
 .vote-controls a.vote-accepted {
   color: #38c172;
+}
+
+textarea {
+  resize: none;
 }
 

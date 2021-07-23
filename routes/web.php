@@ -32,3 +32,6 @@ Route::middleware(['auth'])->group(function () {
 // Question resource routes.
 Route::resource('questions', 'QuestionsController')->except('show');
 Route::get('questions/{questionSlug}', 'QuestionsController@show')->name('questions.show');
+
+// Answers resource routes.
+Route::resource('questions.answers', 'AnswerController')->except(['index', 'create', 'show']);
