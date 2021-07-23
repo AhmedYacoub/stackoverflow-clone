@@ -19,7 +19,7 @@
 
                     <div class="card-body">
                         {{-- Include session messages --}}
-                        @include('layouts._messages')
+                        @include('partials.__messages')
 
                         {{-- Form --}}
                         <form action="{{ route('questions.update', $question->id) }}" method="post">

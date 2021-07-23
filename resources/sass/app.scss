@@ -64,16 +64,20 @@ form.form-delete {
         color: lightslategray;
         &.off,
         &.off:hover {
-            color: lightgray;
+            color: $silver;
         }
         &.favorite {
             &.favored,
             &.favored:hover {
-                color: $red;
+                color: $gold;
             }
         }
         &.vote-accepted {
             color: $green;
         }
     }
+}
+
+textarea {
+    resize: none;
 }
